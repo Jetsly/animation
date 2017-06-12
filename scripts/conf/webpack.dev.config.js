@@ -2,10 +2,10 @@ import webpack from 'webpack'
 import Config from 'webpack-config'
 export default new Config().extend({
   'scripts/conf/webpack.base.config.js': config => {
-    config.entry.vendor = [
-      ...config.entry.vendor,
-      'webpack-hot-middleware/client'
-    ]
+    // config.entry.vendor = [
+    //   ...config.entry.vendor,
+      // 'webpack-hot-middleware/client'
+    // ]
     return config
   }
 }).merge({

@@ -47,7 +47,8 @@ const cssLoaders = {
   transformToRequire: {
     audio: 'src',
     video: 'src'
-  }
+  },
+  esModule: true
 }
 
 export const styleLoaders = () => {

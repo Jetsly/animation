@@ -4,16 +4,13 @@
         <span class="slogan"> {{slogan}} </span>
     </div>
 </template>
-<script>
-    export default {
-      props: {
-        title: {
-          type: String
-        },
-        slogan: {
-          type: String
-        }
-      }
+<script lang="ts">
+    import Vue from "vue"
+    import { Component, Prop } from 'vue-property-decorator'
+    @Component
+    export default class ToolsHeader extends Vue {
+        title: string
+        type: string
     }
 </script>
 <style lang="scss">
