@@ -6,12 +6,12 @@
 </template>
 <script lang="ts">
     import Vue from "vue"
-    import { Component, Prop } from 'vue-property-decorator'
-    @Component
-    export default class ToolsHeader extends Vue {
-        title: string
-        type: string
-    }
+    export default Vue.extend({
+        props: {
+            title: String,
+            slogan: String
+        }
+    })
 </script>
 <style lang="scss">
     .header {

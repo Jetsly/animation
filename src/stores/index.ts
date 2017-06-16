@@ -1,3 +1,3 @@
-// import { Store } from 'vuex'
+import { Store } from 'vuex'
 
-// export default new Store({})
+export default new Store({})
