@@ -4,17 +4,14 @@
         <span class="slogan"> {{slogan}} </span>
     </div>
 </template>
-<script>
-    export default {
-      props: {
-        title: {
-          type: String
-        },
-        slogan: {
-          type: String
+<script lang="ts">
+    import Vue from "vue"
+    export default Vue.extend({
+        props: {
+            title: String,
+            slogan: String
         }
-      }
-    }
+    })
 </script>
 <style lang="scss">
     .header {

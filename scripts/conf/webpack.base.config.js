@@ -12,8 +12,8 @@ import {
 } from './utils'
 export default {
   entry: {
-    app: ['./src/entry.js'],
-    vendor: ['./src/vendor.js']
+    app: ['./src/entry.ts'],
+    vendor: ['./src/vendor.ts']
   },
   output: {
     path: env.assetsPath('dist'),
@@ -21,12 +21,7 @@ export default {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    modules: [
-      env.assetsPath('src'),
-      env.assetsPath('node_modules'),
-      env.assetsPath('../node_modules')
-    ],
+    extensions: ['.ts', '.vue', '.js'],
     alias: aliasObject
   },
   plugins: [
@@ -42,37 +37,51 @@ export default {
   ],
   module: {
     rules: [{
-      test: /\.(js|vue)$/,
-      loader: 'eslint-loader',
-      enforce: 'pre',
-      include: [env.assetsPath('src'), env.assetsPath('test')],
-      exclude: [env.assetsPath('src/assets/libs')],
-      options: {
-        formatter: require('eslint-friendly-formatter')
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        exclude: /node_modules|vue\/src/,
+        options: {
+          appendTsSuffixTo: [/\.vue$/],
+        }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          esModule: true
+        }
+      },
+      {
+        // css文件引用方式， 
+        // 在js中引用使用require('!url-loader?limit=10000!../../assets/images/a1.png')
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10000,
+          name: 'img/[name].[hash:7].[ext]',
+          publicPath: '../'
+        }
+      },
+      {
+        test: /\.(mp3|mp4)(\?.*)?$/,
+        loader: 'file-loader',
+        query: {
+          name: 'media/[name].[hash:7].[ext]',
+          publicPath: './'
+        }
+      },
+      {
+        test: /\.(eot|woff|ttf|eot)$/,
+        loader: 'file-loader',
+        query: {
+          name: 'fonts/[name].[hash:7].[ext]',
+          publicPath: '../'
+        }
+      },
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader'
       }
-    },
-    {
-      test: /\.vue$/,
-      loader: 'vue-loader',
-      options: cssLoaders
-    },
-    {
-      test: /\.js$/,
-      loader: 'babel-loader',
-      include: [env.assetsPath('src'), env.assetsPath('test'), env.assetsPath('node_modules')]
-    },
-    {
-      test: /\.pug$/,
-      loader: 'pug-loader'
-    },
-    {
-      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      loader: 'url-loader',
-      query: {
-        limit: 10000,
-        name: 'img/[name].[ext]'
-      }
-    }
     ].concat(styleLoaders())
   }
 }
