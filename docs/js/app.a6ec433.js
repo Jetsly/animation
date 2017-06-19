@@ -26218,7 +26218,7 @@ exports = module.exports = __webpack_require__(17)(undefined);
 
 
 // module
-exports.push([module.i, "canvas{width:100%}", ""]);
+exports.push([module.i, "canvas{width:100%;max-width:800px}", ""]);
 
 // exports
 
