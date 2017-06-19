@@ -2,22 +2,32 @@
     "animations": {
         "animation": {
             "bones": {
-
+                "body": {
+                    "translate": [{
+                            "time": 0,
+                            "x": 0
+                        },
+                        {
+                            "time": 1,
+                            "x": 20
+                        }
+                    ]
+                }
             }
         }
     },
     "bones": [{
         "name": "root"
     }, {
-        "name": "head",
-        "parent": "root",
-        "x": 100,
-        "y": -100
-    }, {
         "name": "body",
         "parent": "root",
         "x": 100,
         "y": -100
+    }, {
+        "name": "head",
+        "parent": "body",
+        "x": 0,
+        "y": 0
     }, {
         "name": "left-arm",
         "parent": "body",
@@ -38,7 +48,7 @@
         "parent": "body",
         "x": 0,
         "y": 0
-    },{
+    }, {
         "name": "left-leg",
         "parent": "body",
         "x": 0,

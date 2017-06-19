@@ -14,9 +14,14 @@
     }
   })
   export default class App extends Vue {
+    
   }
 </script>
 <style lang="scss">
+  body,html {
+    padding: 0;
+    margin: 0;
+  }
   a {
     text-decoration: none;
   }

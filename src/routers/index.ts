@@ -1,14 +1,20 @@
-import Router from 'vue-router'
+import Router from 'vue-router';
 
-import Matchman from '../views/pixi/Matchman.vue'
+import Hanoi from '../views/pixi/Hanoi.vue';
+import Matchman from '../views/pixi/Matchman.vue';
 
 const routes = [{
   path: '/pixi/Matchman',
-  component: Matchman
+  component: Matchman,
+},
+{
+  path: '/pixi/Hanoi',
+  component: Hanoi,
 }, {
   path: '/',
-  redirect: '/pixi/Matchman'
-}]
+  redirect: '/pixi/Hanoi',
+},
+];
 export default new Router({
-  routes
-})
+  routes,
+});

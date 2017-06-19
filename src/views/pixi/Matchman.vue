@@ -37,7 +37,7 @@
       var animation = new spine.Spine(spineData);
       app.stage.addChild(animation);
       if (animation.state.hasAnimation('animation')) {
-        animation.state.setAnimation(0, 'animation', true);
+        // animation.state.setAnimation(0, 'animation', true); 
         animation.state.timeScale = 1;
       }
     }
