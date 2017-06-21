@@ -1,5 +1,6 @@
 import Router from 'vue-router';
 
+import Index from '../views/Index.vue';
 import Hanoi from '../views/pixi/Hanoi.vue';
 import Matchman from '../views/pixi/Matchman.vue';
 
@@ -12,7 +13,7 @@ const routes = [{
   component: Hanoi,
 }, {
   path: '/',
-  redirect: '/pixi/Hanoi',
+  component: Index,
 },
 ];
 export default new Router({

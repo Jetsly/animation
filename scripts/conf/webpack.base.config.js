@@ -45,6 +45,11 @@ export default {
         }
       },
       {
+        test: /\.js$/,
+        include: [env.assetsPath('src/assets/libs')],
+        use: 'imports-loader?this=>window&define=>false'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
