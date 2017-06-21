@@ -25,11 +25,11 @@
     components: {
       ToolsHeader
     },
-    mounted() {
-      const app = new Application({
+    mounted(this: any) {
+      this.app = new Application({
         transparent: true
       })
-      document.body.appendChild(app.view)
+      document.body.appendChild(this.app.view)
 
       let graphics = new Graphics();
       graphics.lineStyle(5, 0x9e9b9b, 1);
@@ -49,7 +49,7 @@
       graphics.lineTo(125 + 250 * 2 + 25 * 2, 250);
       graphics.moveTo(250 * 2 + 25 * 2, 500)
       graphics.lineTo(250 * 2 + 25 * 2 + 250, 500);
-      app.stage.addChild(graphics);
+      this.app.stage.addChild(graphics);
       const hanoiTexture = Texture.fromCanvas(hanoi())
 
       const xpos = [125, 125 + 250 + 25, 125 + 250 * 2 + 25 * 2]
@@ -90,9 +90,13 @@
             }
           })
           columns[columnIndx].push(hanoi)
-          app.stage.addChild(hanoi);
+          this.app.stage.addChild(hanoi);
         }
       }
+    },
+    beforeDestroy(this: any) {
+      document.body.removeChild(this.app.view)
+      this.app.destroy()
     }
   })
 </script>
