@@ -28,6 +28,9 @@
               name: '汉诺塔',
               path: '/Hanoi'
             },{
+              name: '打砖块',
+              path: '/Breakout'
+            },{
               name: '火柴人',
               path: '/Matchman'
             }]

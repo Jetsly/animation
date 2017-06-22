@@ -27,6 +27,7 @@
   }
   body,html {
     height: 100%;
+    background-color: #fff;
   }
   a {
     text-decoration: none;
