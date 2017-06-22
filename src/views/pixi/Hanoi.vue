@@ -1,7 +1,5 @@
 <template>
-  <div>
     <ToolsHeader title="Hanoi" slogan="汉诺塔 pixi"></ToolsHeader>
-  </div>
 </template>
 <script lang="ts">
   import {
@@ -15,9 +13,7 @@
   import {
     hanoi
   } from 'units/texture'
-  import {
-    bindDrag
-  } from 'units/common'
+  import bindDrag from 'units/spin/hanoi'
   import 'pixi-spine'
   import ToolsHeader from 'components/ToolsHeader.vue'
   import Vue from "vue"

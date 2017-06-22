@@ -1,7 +1,5 @@
 <template>
-  <div>
     <ToolsHeader title="Matchman" slogan="火柴人 pixi"></ToolsHeader>
-  </div>
 </template>
 <script lang="ts">
   // http://wanzao2.b0.upaiyun.com/system/pictures/16525619/original/01a1698bb782b7f6.gif
@@ -39,7 +37,6 @@
           this.app.stage.addChild(animation);
           if (animation.state.hasAnimation('move')) {
             animation.state.setAnimation(0, 'move', true);
-            animation.state.timeScale = 1;
           }
         });
       })
