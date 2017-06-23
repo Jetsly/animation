@@ -105,3 +105,9 @@
         }
     })
 </script>
+<style lang="scss">
+  canvas {
+    width: 100%;
+    max-width: 800px;
+  }
+</style>
