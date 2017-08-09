@@ -6,7 +6,6 @@
     Application,
     Texture,
     Sprite,
-    spine,
     Graphics,
     Point
   } from 'pixi.js'
@@ -14,7 +13,6 @@
     hanoi
   } from 'units/texture'
   import bindDrag from 'units/spin/hanoi'
-  import 'pixi-spine'
   import ToolsHeader from 'components/ToolsHeader.vue'
   import Vue from "vue"
   export default Vue.extend({

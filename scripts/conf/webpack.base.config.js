@@ -20,6 +20,9 @@ export default {
     filename: '[name].js',
     publicPath: '/'
   },
+  externals : {
+    dragonBones: 'dragonBones'
+  },
   resolve: {
     extensions: ['.ts', '.vue', '.js'],
     alias: aliasObject
