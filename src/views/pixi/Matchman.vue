@@ -8,7 +8,8 @@
     WebGLRenderer,
     loaders,
     Container,
-    Sprite
+    Sprite,
+    Application
   } from 'pixi.js'
   import 'assets/libs/dragonBones'
   import ToolsHeader from 'components/ToolsHeader.vue'
@@ -18,14 +19,11 @@
       ToolsHeader
     },
     mounted(this: any) {
-      this._renderer = new WebGLRenderer(1136, 640)
-      document.body.appendChild(this._renderer.view)
-      this.stage = new PIXI.Container();
-      this._backgroud = new PIXI.Sprite(PIXI.Texture.EMPTY);
-      this._renderer.backgroundColor = 0x666666;
-      this._backgroud.width = this._renderer.width;
-      this._backgroud.height = this._renderer.height;
-      this.stage.addChild(this._backgroud);
+      this.app = new Application({
+        transparent: true,
+        sharedTicker: true
+      })
+      document.body.appendChild(this.app.view)
       let loader = new loaders.Loader()
       loader.add("dragonBonesData", require('!file-loader!../../assets/matchman/NewProject_ske.dbbin'), {
           loadType: loaders.Resource.LOAD_TYPE.XHR,
@@ -40,12 +38,9 @@
         factory.parseTextureAtlasData(resources["textureData"].data, resources["texture"].texture);
         const armatureDisplay = factory.buildArmatureDisplay("matchman");
         armatureDisplay.animation.play("move");
-        this.stage.addChild(armatureDisplay);
+        this.app.stage.addChild(armatureDisplay);
         armatureDisplay.x = 0;
         armatureDisplay.y = 100;
-        PIXI.ticker.shared.add(() => {
-          this._renderer.render(this.stage);
-        }, this);
       })
       loader.load()
     },
