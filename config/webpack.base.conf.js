@@ -1,22 +1,19 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
-import {
-  env
-} from './utils.js'
+import { join } from 'path'
 import {
   styleLoaders,
   default as cssLoaders
 } from './vue-loader.conf'
-import {
-  aliasObject
-} from './utils'
+export const assetsPath = (...relativePath) => join(__dirname, '../', ...relativePath)
+const isFontFile = url => /\.(woff2?|eot|ttf|otf)(\?.*)?$/.test(url)
 export default {
   entry: {
     app: ['./src/entry.ts'],
     vendor: ['./src/vendor.ts']
   },
   output: {
-    path: env.assetsPath('dist'),
+    path: assetsPath('dist'),
     filename: '[name].js',
     publicPath: '/'
   },
@@ -25,19 +22,18 @@ export default {
   },
   resolve: {
     extensions: ['.ts', '.vue', '.js'],
-    alias: aliasObject
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      chunks: ['vendor', 'app'],
-      filename: `index.html`,
-      template: `./src/index.pug`
-    }),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: Infinity
+    alias: Object.assign({}, {
+      'src': assetsPath('src'),
+      'assets': assetsPath('src/assets'),
+      'actions': assetsPath('src/actions'),
+      'components': assetsPath('src/components'),
+      'units': assetsPath('src/units'),
+      'stores': assetsPath('src/stores'),
+      'routers': assetsPath('src/routers'),
+      'directives': assetsPath('src/directives'),
+      'mixins': assetsPath('src/mixins')
     })
-  ],
+  },
   module: {
     rules: [{
         test: /\.tsx?$/,
@@ -49,7 +45,7 @@ export default {
       },
       {
         test: /\.js$/,
-        include: [env.assetsPath('src/assets/libs')],
+        include: [assetsPath('src/assets/libs')],
         use: 'imports-loader?this=>window&define=>false'
       },
       {
@@ -71,25 +67,26 @@ export default {
         }
       },
       {
-        test: /\.(mp3|mp4)(\?.*)?$/,
+        test: /\.(woff2?|eot|ttf|otf|mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'file-loader',
-        query: {
-          name: 'media/[name].[hash:7].[ext]',
-          publicPath: './'
+        options: {
+          name: '[name].[hash:7].[ext]',
+          outputPath: url => `${isFontFile(url) ? 'fonts' : 'media'}/${url}`,
+          publicPath: url => `${isFontFile(url) ? '../' : './'}${url}`
         }
       },
-      {
-        test: /\.(eot|woff|ttf|eot)$/,
-        loader: 'file-loader',
-        query: {
-          name: 'fonts/[name].[hash:7].[ext]',
-          publicPath: '../'
-        }
-      },
-      {
-        test: /\.pug$/,
-        loader: 'pug-loader'
-      }
     ].concat(styleLoaders())
-  }
+  },
+  plugins: [
+    new webpack.HashedModuleIdsPlugin(),
+    new HtmlWebpackPlugin({
+      chunks: ['vendor', 'app'],
+      filename: `index.html`,
+      template: assetsPath(`src/tpl.html`)
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: Infinity
+    })
+  ]
 }

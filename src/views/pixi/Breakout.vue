@@ -59,7 +59,7 @@
             })
             let count = this.app.renderer.width / 100
             let bricks = new Graphics();
-            for (var idx = 0; idx < count*4; idx++) {
+            for (var idx = 0; idx < count * 4; idx++) {
                 let brick = new Graphics();
                 brick.beginFill(0xa99581);
                 brick.drawRoundedRect(0, 0, 100, 15, 5);
@@ -106,8 +106,8 @@
     })
 </script>
 <style lang="scss">
-  canvas {
-    width: 100%;
-    max-width: 800px;
-  }
+    canvas {
+        width: 100%;
+        max-width: 800px;
+    }
 </style>
