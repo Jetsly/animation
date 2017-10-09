@@ -13,12 +13,13 @@
         </div>
     </div>
 </template>
-<script>
-    import ToolsHeader from 'components/ToolsHeader'
-    export default {
+<script lang="ts">
+   import ToolsHeader from 'components/ToolsHeader.vue'
+    import Vue from "vue"
+    export default Vue.extend({
       components: {
-        ToolsHeader
-      },
+       ToolsHeader
+     },
       data () {
         return {
           paths: [{
@@ -37,7 +38,7 @@
           }]
         }
       }
-    }
+    })
 </script>
 <style lang="scss">
     .anime {

@@ -25,12 +25,12 @@
       })
       document.body.appendChild(this.app.view)
       let loader = new loaders.Loader()
-      loader.add("dragonBonesData", require('!file-loader!../../assets/matchman/NewProject_ske.dbbin'), {
+      loader.add("dragonBonesData", require('!file-loader?name=[name].[hash:7].[ext]!../../assets/matchman/NewProject_ske.dbbin'), {
           loadType: loaders.Resource.LOAD_TYPE.XHR,
           xhrType: loaders.Resource.XHR_RESPONSE_TYPE.BUFFER
         })
-        .add("textureData", require('!file-loader!../../assets/matchman/NewProject_tex.json'))
-        .add("texture", require('!file-loader!../../assets/matchman/NewProject_tex.png'))
+        .add("textureData", require('!file-loader?name=[name].[hash:7].[ext]!../../assets/matchman/NewProject_tex.json'))
+        .add("texture", require('!file-loader?name=[name].[hash:7].[ext]!../../assets/matchman/NewProject_tex.png'))
 
       loader.once('complete', (loader: loaders.Loader, resources: any) => {
         const factory = dragonBones.PixiFactory.factory;
